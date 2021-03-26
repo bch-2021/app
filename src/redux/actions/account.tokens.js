@@ -1,0 +1,1 @@
+export const ACCOUNT_TOK_UPDATE = 'ACCOUNT_TOK_UPDATE';
