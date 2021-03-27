@@ -99,6 +99,26 @@ export default class Web3Handler {
     contract.methods.createPoint(name, address, pointOwner).send({ from: account });
   }
 
+  searchByBatchNumber(batchNumber) {
+    // TODO searchByBatchNumber
+    const data = {
+      '00001': {
+        data: 'ipfs://QmWtWfaeo6m2D4qEWXUMp2PKDziRKTHTVSdfkft78Uuj1d',
+      },
+      '00002': {
+        data: 'ipfs://QmaAF2uSozY8JxBxrC1QHkKEjf9txZ1mo1tR3ePfBwE8t1',
+      },
+      '00003': {
+        data: 'ipfs://QmZn1iRPW3JuQqtUc7vhmtFttwxSjwCTVJAN9LtYnGYSP4',
+      },
+    };
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(data[batchNumber]);
+      }, 300);
+    });
+  }
+
   async createPointTransfer(pointId, link, type, batchNumber) {
     const contract = await this.getWeb3Contract();
     const account = await this.getWeb3Account();
