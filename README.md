@@ -19,6 +19,12 @@ yarn install
 yarn dev
 ```
 
+## Generate data and upload into ipfs
+
+```shell
+node util/dataUpload.js
+```
+
 ## Deploy
 
 TBD
