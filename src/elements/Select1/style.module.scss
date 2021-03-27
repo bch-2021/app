@@ -1,0 +1,10 @@
+@import 'styles/variables';
+
+.container {
+  width: 100%;
+  font-family: "Inter";
+
+  & > div {
+    border-radius: 8px;
+  }
+}

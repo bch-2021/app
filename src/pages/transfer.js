@@ -1,9 +1,3 @@
-import Layout from 'components/Layout';
+import Transfer from 'components/Transfer';
 
-export default function Home() {
-  return (
-    <Layout>
-      <p>transfer</p>
-    </Layout>
-  );
-}
+export default Transfer;

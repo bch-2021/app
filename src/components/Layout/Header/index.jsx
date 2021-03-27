@@ -1,10 +1,5 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-// import { useSelector, useDispatch } from 'react-redux';
-// import Grid from '@material-ui/core/Grid';
-// import Button1 from 'elements/Button1';
-// import { LANG_CHANGE } from 'redux/actions/language';
-// import Translator from 'handlers/translator';
 import cl from './style.module.scss';
 
 export default function Header() {
