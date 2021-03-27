@@ -2,7 +2,7 @@
 
 const mocker = require('mocker-data-generator').default
 
-function dataGen(length = 1000) {
+function dataGen(batchNumber = '00001',length = 1000) {
   const schema = {
     serial: [{
       chance: 'guid',
@@ -12,7 +12,7 @@ function dataGen(length = 1000) {
   return mocker()
     .schema('data', schema, 1)
     .buildSync().data[0].serial
-    .map((item) => item.split('-')[0]).slice(0, length)
+    .map((item) => `${batchNumber}-${item.split('-')[0]}`).slice(0, length)
 }
 
 
