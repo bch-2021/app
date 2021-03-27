@@ -2,22 +2,17 @@
 
 const mocker = require('mocker-data-generator').default
 
-function dataGen() {
+function dataGen(length = 1000) {
   const schema = {
-    batchId: {
-      //chance: 'guid'
-      faker: 'datatype.number({"min": 10, "max": 99})'
-    },
     serial: [{
-      //chance: 'guid',
-      faker: 'datatype.number({"min": 1000, "max": 9000})',
-      length: 1000
+      chance: 'guid',
+      length: length * 3,
     }]
   }
-
   return  mocker()
     .schema('data', schema, 1)
-    .buildSync().data[0]
+    .buildSync().data[0].serial
+    .map((item) => item.split('-')[0]).slice(0, length)
 }
 
 
