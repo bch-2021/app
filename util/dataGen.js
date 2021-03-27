@@ -9,7 +9,7 @@ function dataGen(length = 1000) {
       length: length * 3,
     }]
   }
-  return  mocker()
+  return mocker()
     .schema('data', schema, 1)
     .buildSync().data[0].serial
     .map((item) => item.split('-')[0]).slice(0, length)
