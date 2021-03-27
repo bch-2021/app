@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Web3 from 'web3';
+import axios from 'axios';
 
 export default class Web3Handler {
   constructor() {
@@ -8,7 +9,10 @@ export default class Web3Handler {
   }
 
   getWeb3() {
-    return new Web3(Web3.givenProvider);
+    const web3 =  new Web3(Web3.givenProvider);
+    web3.eth.handleRevert = true;
+
+    return web3;
   }
 
   async getWeb3Account() {
@@ -82,6 +86,26 @@ export default class Web3Handler {
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "batchNumbers",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
           }
         ],
         "stateMutability": "view",
@@ -349,9 +373,23 @@ export default class Web3Handler {
         "stateMutability": "view",
         "type": "function",
         "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "getBatchNumbers",
+        "outputs": [
+          {
+            "internalType": "string[]",
+            "name": "",
+            "type": "string[]"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
       }
     ];
-    return new this.web3.eth.Contract(abi, '0xaac9b538ce91bbb8400e35fb9fe9b306ec787245');
+    return new this.web3.eth.Contract(abi, '0x99c684f55138b12e3a33Abd1074e1A77ea9710a4');
   }
 
   async setPoints(setter) {
@@ -373,10 +411,44 @@ export default class Web3Handler {
     setter(pointsL);
   }
 
+  async setProductTransferAll(setter) {
+    const contract = await this.getWeb3Contract();
+
+    const batchNumbers = await contract.methods.getBatchNumbers().call();
+
+    const data = [];
+
+    for (let i = 0; i < batchNumbers.length; i++) {
+      const transfers = await contract.methods.getInfoByBatchNumber(batchNumbers[i]).call();
+
+      const productTransfersForBatchNumber = [];
+      transfers.forEach((transfer) => {
+        productTransfersForBatchNumber.push({
+          batchNumber: batchNumbers[i],
+          pointId: transfer.pointId,
+          link: transfer.link,
+          type: transfer.transferType,
+          date: transfer.date,
+        });
+      })
+
+      data.push({batchNumber: batchNumbers[i], productTransfers: productTransfersForBatchNumber})
+    }
+
+    setter(data);
+  }
+
   async createPoint(name, address, pointOwner) {
     const contract = await this.getWeb3Contract();
     const account = await this.getWeb3Account();
     contract.methods.createPoint(name, address, pointOwner).send({ from: account });
+  }
+
+  async createPointTransfer(pointId, link, type, batchNumber) {
+    const contract = await this.getWeb3Contract();
+    const account = await this.getWeb3Account();
+
+    contract.methods.createProductTransfer(pointId, link, type, batchNumber).send({ from: account });
   }
 }
 

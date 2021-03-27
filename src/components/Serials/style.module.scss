@@ -21,4 +21,21 @@
       margin-top: 25px;
     }
   }
+
+  .numbers {
+    p {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        font-weight: normal;
+        font-size: 14px;
+      }
+    }
+  }
+
 }

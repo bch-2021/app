@@ -28,7 +28,7 @@ export default function Select1({ name, value, onChange, items }) {
 Select1.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   items: PropTypes.array.isRequired,
 };
 
