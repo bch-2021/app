@@ -45,10 +45,14 @@ export default function Serials() {
           </Grid>
           {serials.map((data, key1) => (
             <Grid key={key1} item xs={3} className={cl.numbers}>
-              <p>Serial number for {data.batchNumber}</p>
+              <p>Serials for batch number - {data.batchNumber}</p>
               <div className={cl.list}>
                 {data.serials.map((serail, key2) => (
-                  <span key={key2}>{serail}</span>
+                  <div key={key2}>
+                    <div />
+                    <span>{serail}</span>
+                  </div>
+
                 ))}
               </div>
             </Grid>

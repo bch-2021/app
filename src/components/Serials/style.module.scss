@@ -34,6 +34,22 @@
       span {
         font-weight: normal;
         font-size: 14px;
+        color: $black-80;
+      }
+
+      & > div {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        margin-top: 5px;
+
+        & > div {
+          margin-right: 5px;
+          background: $black-80;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+        }
       }
     }
   }
