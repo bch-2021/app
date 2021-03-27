@@ -103,45 +103,45 @@ export default class Web3Handler {
     // TODO searchByBatchNumber
     const data = {
       '00001': {
-        data: 'ipfs://QmWtWfaeo6m2D4qEWXUMp2PKDziRKTHTVSdfkft78Uuj1d',
+        link: 'ipfs://QmWtWfaeo6m2D4qEWXUMp2PKDziRKTHTVSdfkft78Uuj1d',
         history: [
           {
-            data: '21.01.07',
+            date: '21.01.07',
             type: 0,
             point: 'Apple Factory. Japain, 〒038-0101 Aomori',
           },
           {
-            data: '21.01.07',
+            date: '21.01.07',
             type: 1,
             point: 'Apple Factory. Japain, 〒038-0101 Aomori',
           },
           {
-            data: '21.01.07',
+            date: '21.01.07',
             type: 3,
             point: 'Apple Factory. Japain, 〒038-0101 Aomori',
           },
         ],
       },
       '00002': {
-        data: 'ipfs://QmaAF2uSozY8JxBxrC1QHkKEjf9txZ1mo1tR3ePfBwE8t1',
+        link: 'ipfs://QmaAF2uSozY8JxBxrC1QHkKEjf9txZ1mo1tR3ePfBwE8t1',
         history: [
           {
-            data: '21.01.07',
+            date: '21.01.07',
             type: 0,
             point: 'Apple Factory. Japain, 〒038-0101 Aomori',
           },
           {
-            data: '21.01.07',
+            date: '21.01.07',
             type: 1,
             point: 'Apple Factory. Japain, 〒038-0101 Aomori',
           },
         ],
       },
       '00003': {
-        data: 'ipfs://QmZn1iRPW3JuQqtUc7vhmtFttwxSjwCTVJAN9LtYnGYSP4',
+        link: 'ipfs://QmZn1iRPW3JuQqtUc7vhmtFttwxSjwCTVJAN9LtYnGYSP4',
         history: [
           {
-            data: '21.01.07',
+            date: '21.01.07',
             type: 0,
             point: 'Apple Factory. Japain, 〒038-0101 Aomori',
           },
@@ -150,7 +150,7 @@ export default class Web3Handler {
     };
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(data[batchNumber]);
+        resolve(data[batchNumber] ? [data[batchNumber]] : []);
       }, 300);
     });
   }

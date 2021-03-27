@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export function getTypeAliasByNumber(type) {
   switch (type) {
     case 0:
@@ -22,10 +24,18 @@ export function getTypeImageByNumber(type) {
 
 const ipfsDefaultGateways = 'ipfs.io'
 export function parseDataURL(raw) {
-  const url = new URL(raw);
-  switch (url.protocol) {
-    case 'ipfs:':
+  const [, protocol, cid] = /^(\w+):\/\/(.*)$/.exec(raw);
+  switch (protocol) {
+    case 'ipfs':
     default:
-      return `https://${ipfsDefaultGateways}/ipfs/{${url.hostname}/`;
+      return `https://${ipfsDefaultGateways}/ipfs/${cid}/`;
+  }
+}
+
+export function hasSerialNumber(serialNumber) {
+  return async (item) => {
+    const resp = await axios({ method: 'get', url: parseDataURL(item.link) });
+    const data = resp.data;
+    return data.indexOf(serialNumber) !== -1;
   }
 }
