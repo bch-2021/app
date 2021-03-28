@@ -28,7 +28,9 @@ async function dataUpload(batchNumber = []) {
 }
 
 dataUpload([
-  '00001',
-  '00002',
-  '00003',
+  'AA45FE',
+  '3FFE33',
+  '2F34F4',
+  '3R3D3D',
+  '3DGFE4',
 ]).catch(console.error)

@@ -23,6 +23,7 @@ yarn dev
 
 ```shell
 node util/dataUpload.js
+node util/dataCheck.js
 ```
 
 ## Docs
