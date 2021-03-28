@@ -41,7 +41,11 @@ export async function hasSerialNumber(serialNumber, link) {
   const resp = await axios({ method: 'get', url: parseDataURL(link) });
   const { data } = resp;
 
-  return data.indexOf(serialNumber) !== -1;
+  if (data.indexOf(serialNumber.toLowerCase()) !== -1) {
+    return true;
+  }
+
+  return data.indexOf(serialNumber.toUpperCase()) !== -1;
 }
 
 export function parseDate(solTimestamp) {
