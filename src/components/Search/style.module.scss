@@ -14,4 +14,8 @@
   & > div > div:last-child > div:last-child {
     display: none;
   }
+
+  & > div > div:last-child {
+    margin-bottom: 150px;
+  }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable */
 module.exports = {
   env: {
-    contractAddress: '0x1691f64C28746524F83278D14e2a4097f79C74a3',
+    contractAddress: '0x9d6e0498d83623ECC6e50E6889Af0635EF4479Bf',
     contractABI: [
       {
         "inputs": [
@@ -19,6 +19,11 @@ module.exports = {
             "internalType": "string",
             "name": "_description",
             "type": "string"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_transferTypes",
+            "type": "uint256[]"
           }
         ],
         "stateMutability": "nonpayable",
@@ -46,31 +51,6 @@ module.exports = {
       {
         "inputs": [
           {
-            "internalType": "string",
-            "name": "",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "batchNumberToProductTransfers",
-        "outputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function",
-        "constant": true
-      },
-      {
-        "inputs": [
-          {
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
@@ -82,6 +62,113 @@ module.exports = {
             "internalType": "string",
             "name": "",
             "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "_name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "_pointAddress",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "_pointOwner",
+            "type": "address"
+          }
+        ],
+        "name": "createPoint",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_pointId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "_link",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_transferType",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "_batchNumber",
+            "type": "string"
+          }
+        ],
+        "name": "createProductTransfer",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "getBatchNumbers",
+        "outputs": [
+          {
+            "internalType": "string[]",
+            "name": "",
+            "type": "string[]"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "_batchNumber",
+            "type": "string"
+          }
+        ],
+        "name": "getInfoByBatchNumber",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "pointId",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "link",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "transferType",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct IERCTracking.ProductTransfer[]",
+            "name": "",
+            "type": "tuple[]"
           }
         ],
         "stateMutability": "view",
@@ -196,9 +283,9 @@ module.exports = {
             "type": "string"
           },
           {
-            "internalType": "enum Tracking.ProductTransferTypes",
+            "internalType": "uint256",
             "name": "transferType",
-            "type": "uint8"
+            "type": "uint256"
           }
         ],
         "stateMutability": "view",
@@ -242,29 +329,6 @@ module.exports = {
       {
         "inputs": [
           {
-            "internalType": "string",
-            "name": "_name",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "_pointAddress",
-            "type": "string"
-          },
-          {
-            "internalType": "address",
-            "name": "_pointOwner",
-            "type": "address"
-          }
-        ],
-        "name": "createPoint",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
             "internalType": "uint256",
             "name": "_pointId",
             "type": "uint256"
@@ -284,85 +348,44 @@ module.exports = {
         "inputs": [
           {
             "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "transferTypes",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
             "name": "_pointId",
             "type": "uint256"
           },
           {
             "internalType": "string",
-            "name": "_link",
+            "name": "_name",
             "type": "string"
-          },
-          {
-            "internalType": "enum Tracking.ProductTransferTypes",
-            "name": "_transferType",
-            "type": "uint8"
           },
           {
             "internalType": "string",
-            "name": "_batchNumber",
+            "name": "_pointAddress",
             "type": "string"
           }
         ],
-        "name": "createProductTransfer",
+        "name": "updatePoint",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "string",
-            "name": "_batchNumber",
-            "type": "string"
-          }
-        ],
-        "name": "getInfoByBatchNumber",
-        "outputs": [
-          {
-            "components": [
-              {
-                "internalType": "uint256",
-                "name": "pointId",
-                "type": "uint256"
-              },
-              {
-                "internalType": "uint256",
-                "name": "date",
-                "type": "uint256"
-              },
-              {
-                "internalType": "string",
-                "name": "link",
-                "type": "string"
-              },
-              {
-                "internalType": "enum Tracking.ProductTransferTypes",
-                "name": "transferType",
-                "type": "uint8"
-              }
-            ],
-            "internalType": "struct Tracking.ProductTransfer[]",
-            "name": "",
-            "type": "tuple[]"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function",
-        "constant": true
-      },
-      {
-        "inputs": [],
-        "name": "getBatchNumbers",
-        "outputs": [
-          {
-            "internalType": "string[]",
-            "name": "",
-            "type": "string[]"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function",
-        "constant": true
       }
     ],
   },
