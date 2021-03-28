@@ -4,6 +4,7 @@ import axios from 'axios';
 import Layout from '../Layout';
 import cl from './style.module.scss';
 import Web3Handler from '../../helpers/web3';
+import { parseDataURL } from '../../helpers/helper';
 
 export default function Serials() {
   const [batchGroup, setBatchGroup] = useState([]);
@@ -28,7 +29,8 @@ export default function Serials() {
     });
 
     for (let i = 0; i < serialsData.length; i++) {
-      const resp = await axios({ method: 'get', url: serialsData[i].link });
+      const link = parseDataURL(serialsData[i].link);
+      const resp = await axios({ method: 'get', url: link });
       const newSerials = resp.data;
       serialsData[i] = { ...serialsData[i], serials: newSerials };
     }

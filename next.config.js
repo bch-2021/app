@@ -1,7 +1,7 @@
 /* eslint-disable */
 module.exports = {
   env: {
-    contractAddress: '0x99c684f55138b12e3a33Abd1074e1A77ea9710a4',
+    contractAddress: '0x1691f64C28746524F83278D14e2a4097f79C74a3',
     contractABI: [
       {
         "inputs": [

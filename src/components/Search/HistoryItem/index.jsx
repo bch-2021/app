@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { getTypeAliasByNumber, getTypeImageByNumber } from 'helpers/helper';
+import { getTypeAliasByNumber, getTypeImageByNumber, parseDate } from 'helpers/helper';
 import cl from './style.module.scss';
 
 export default function HistoryItem({ date, type, point }) {
@@ -16,7 +16,7 @@ export default function HistoryItem({ date, type, point }) {
           <div>
             <p>
               <span>Date:</span>
-              <span>{date}</span>
+              <span>{parseDate(date)}</span>
             </p>
             <p>
               <span>Type:</span>
@@ -32,14 +32,13 @@ export default function HistoryItem({ date, type, point }) {
         </div>
       </div>
 
-      <div className={cl.line}>
-      </div>
+      <div className={cl.line} />
     </div>
   );
 }
 
 HistoryItem.propTypes = {
   date: PropTypes.string.isRequired,
-  type: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
   point: PropTypes.string.isRequired,
 };

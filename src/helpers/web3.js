@@ -66,6 +66,18 @@ export default class Web3Handler {
     setter(pointsL);
   }
 
+  async getPointInfo(pointId) {
+    const contract = await this.getWeb3Contract();
+
+    const res = await contract.methods.points(pointId).call();
+    return {
+      id: pointId,
+      pointAddress: res.pointAddress,
+      pointOwner: res.pointOwner,
+      name: res.name,
+    };
+  }
+
   async setProductTransferAll(setter) {
     const contract = await this.getWeb3Contract();
 
@@ -91,6 +103,25 @@ export default class Web3Handler {
     }
 
     setter(data);
+  }
+
+  async setProductTransferByBatchNumber(setter, batchNumber) {
+    const contract = await this.getWeb3Contract();
+
+    const transfers = await contract.methods.getInfoByBatchNumber(batchNumber).call();
+
+    const productTransfersForBatchNumber = [];
+
+    transfers.forEach((transfer) => {
+      productTransfersForBatchNumber.push({
+        pointId: transfer.pointId,
+        link: transfer.link,
+        type: transfer.transferType,
+        date: transfer.date,
+      });
+    });
+
+    setter(productTransfersForBatchNumber);
   }
 
   async createPoint(name, address, pointOwner) {
