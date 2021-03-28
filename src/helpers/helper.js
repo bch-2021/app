@@ -41,7 +41,7 @@ export async function hasSerialNumber(serialNumber, link) {
   const resp = await axios({ method: 'get', url: parseDataURL(link) });
   const { data } = resp;
 
-  if (data.indexOf(serialNumber) !== -1) {
+  if (data.indexOf(serialNumber.toLowerCase()) !== -1) {
     return true;
   }
 
